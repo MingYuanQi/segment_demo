@@ -14,13 +14,13 @@ nennWeb 是一个用于图像分割的 JavaScript 库，支持 Chrome，提供�
 
 #### 2.1 资源引入
 ##### 资源依赖
-worker-model-worker.mjs
-ort.all.mjs
-ort-wasm-simd-threaded.jsep.wasm
-ort-wasm-simd-threaded.jsep.mjs
-opencv_js.wasm
-nennweb.min.mjs
-models.esm.js
+worker-model-worker.mjs  
+ort.all.mjs  
+ort-wasm-simd-threaded.jsep.wasm  
+ort-wasm-simd-threaded.jsep.mjs  
+opencv_js.wasm  
+nennweb.min.mjs  
+models.esm.js  
 
 ##### 使用
 在 `public/index.html` 中引入 nennWeb 库：
