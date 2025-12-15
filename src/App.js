@@ -360,18 +360,18 @@ const App = () => {
         );
         let cap = new window.cv.VideoCapture(video);
         cap.read(imgRGBA.current)
-        inferImage().then(()=>{
-            if (result.current && result.current.blendedImg && !result.current.blendedImg.isDeleted()) {
-              window.cv.imshow(canvas, result.current.blendedImg)
-              setTimeout(() => {if(isActive) inferVideo()}, 0);
-            } else {
-              console.error('推理结果无效');
-              setTimeout(() => {if(isActive) inferVideo()}, 100);
-            }
-        }).catch((error) => {
-          console.error('推理错误:', error);
-          setTimeout(() => {if(isActive) inferVideo()}, 100);
-        })
+        inferImage()//.then(()=>{
+            // if (result.current && result.current && !result.current.isDeleted()) {
+            //   window.cv.imshow(canvas, result.current)
+            //   setTimeout(() => {if(isActive) inferVideo()}, 0);
+            // } else {
+            //   console.error('推理结果无效');
+            //   setTimeout(() => {if(isActive) inferVideo()}, 100);
+            // }
+        // }).catch((error) => {
+        //   console.error('推理错误:', error);
+        //   setTimeout(() => {if(isActive) inferVideo()}, 100);
+        // })
       } catch (error) {
         console.error('视频处理错误:', error);
         setTimeout(() => {if(isActive) inferVideo()}, 100);
@@ -390,7 +390,13 @@ const App = () => {
           result.current.delete()
       }
       const startTime = performance.now();
-      result.current = await model.current.infer(imgRGBA.current, bgcolor.current, bgimg.current);
+      result.current = await model.current.infer(imgRGBA.current, bgcolor.current, bgimg.current, (element)=>{
+         if(isActive && canvasRef.current){
+          window.cv.imshow(canvasRef.current, element);
+          element.delete();
+          setTimeout(() => {if(isActive) inferVideo()}, 0);
+         }
+      });
       const endTime = performance.now();
       const currentLatency = endTime - startTime;
       

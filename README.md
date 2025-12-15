@@ -70,10 +70,14 @@ const model = await loadModel();
 const imageElement = document.getElementById('input-image');
 
 // 执行分割
-const segmentationResult = await model.infer(imgRGBA,bgcolor, bgimg);
-
-// 展示分割图
-cv.imshow(canvas, result.blendedImg)
+const segmentationResult = await model.infer(imgRGBA,bgcolor, bgimg,(element)=>{
+  // 展示分割图
+  window.cv.imshow(canvasRef.current, element);
+  element.delete();
+  // 进行下一次分割
+  setTimeout(() => {if(isActive) inferVideo()}, 0);
+    
+});
 
 ```
 

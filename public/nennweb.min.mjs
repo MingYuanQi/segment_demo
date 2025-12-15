@@ -2709,7 +2709,7 @@ var cv = (() => {
           "/proc/self/fd"
         );
       },
-      createStandardStreams(input, output, error) {
+      createStandardStreams(input, output, error2) {
         if (input) {
           FS.createDevice("/dev", "stdin", input);
         } else {
@@ -2720,8 +2720,8 @@ var cv = (() => {
         } else {
           FS.symlink("/dev/tty", "/dev/stdout");
         }
-        if (error) {
-          FS.createDevice("/dev", "stderr", null, error);
+        if (error2) {
+          FS.createDevice("/dev", "stderr", null, error2);
         } else {
           FS.symlink("/dev/tty1", "/dev/stderr");
         }
@@ -2737,12 +2737,12 @@ var cv = (() => {
         FS.createSpecialDirectories();
         FS.filesystems = { MEMFS };
       },
-      init(input, output, error) {
+      init(input, output, error2) {
         FS.initialized = true;
         input ?? (input = Module["stdin"]);
         output ?? (output = Module["stdout"]);
-        error ?? (error = Module["stderr"]);
-        FS.createStandardStreams(input, output, error);
+        error2 ?? (error2 = Module["stderr"]);
+        FS.createStandardStreams(input, output, error2);
       },
       quit() {
         FS.initialized = false;
@@ -7419,10 +7419,10 @@ var init_instrument = __esm({
         log4("warning", arg0, arg1);
       }
       log4.warning = warning;
-      function error(arg0, arg1) {
+      function error2(arg0, arg1) {
         log4("error", arg0, arg1);
       }
-      log4.error = error;
+      log4.error = error2;
       function fatal(arg0, arg1) {
         log4("fatal", arg0, arg1);
       }
@@ -14782,20 +14782,20 @@ var require_onnx = __commonJS({
               return "s: buffer expected";
           }
           if (message.t != null && message.hasOwnProperty("t")) {
-            var error = $root.onnx.TensorProto.verify(message.t);
-            if (error) return "t." + error;
+            var error2 = $root.onnx.TensorProto.verify(message.t);
+            if (error2) return "t." + error2;
           }
           if (message.g != null && message.hasOwnProperty("g")) {
-            var error = $root.onnx.GraphProto.verify(message.g);
-            if (error) return "g." + error;
+            var error2 = $root.onnx.GraphProto.verify(message.g);
+            if (error2) return "g." + error2;
           }
           if (message.sparseTensor != null && message.hasOwnProperty("sparseTensor")) {
-            var error = $root.onnx.SparseTensorProto.verify(message.sparseTensor);
-            if (error) return "sparseTensor." + error;
+            var error2 = $root.onnx.SparseTensorProto.verify(message.sparseTensor);
+            if (error2) return "sparseTensor." + error2;
           }
           if (message.tp != null && message.hasOwnProperty("tp")) {
-            var error = $root.onnx.TypeProto.verify(message.tp);
-            if (error) return "tp." + error;
+            var error2 = $root.onnx.TypeProto.verify(message.tp);
+            if (error2) return "tp." + error2;
           }
           if (message.floats != null && message.hasOwnProperty("floats")) {
             if (!Array.isArray(message.floats)) return "floats: array expected";
@@ -14817,29 +14817,29 @@ var require_onnx = __commonJS({
           if (message.tensors != null && message.hasOwnProperty("tensors")) {
             if (!Array.isArray(message.tensors)) return "tensors: array expected";
             for (var i = 0; i < message.tensors.length; ++i) {
-              var error = $root.onnx.TensorProto.verify(message.tensors[i]);
-              if (error) return "tensors." + error;
+              var error2 = $root.onnx.TensorProto.verify(message.tensors[i]);
+              if (error2) return "tensors." + error2;
             }
           }
           if (message.graphs != null && message.hasOwnProperty("graphs")) {
             if (!Array.isArray(message.graphs)) return "graphs: array expected";
             for (var i = 0; i < message.graphs.length; ++i) {
-              var error = $root.onnx.GraphProto.verify(message.graphs[i]);
-              if (error) return "graphs." + error;
+              var error2 = $root.onnx.GraphProto.verify(message.graphs[i]);
+              if (error2) return "graphs." + error2;
             }
           }
           if (message.sparseTensors != null && message.hasOwnProperty("sparseTensors")) {
             if (!Array.isArray(message.sparseTensors)) return "sparseTensors: array expected";
             for (var i = 0; i < message.sparseTensors.length; ++i) {
-              var error = $root.onnx.SparseTensorProto.verify(message.sparseTensors[i]);
-              if (error) return "sparseTensors." + error;
+              var error2 = $root.onnx.SparseTensorProto.verify(message.sparseTensors[i]);
+              if (error2) return "sparseTensors." + error2;
             }
           }
           if (message.typeProtos != null && message.hasOwnProperty("typeProtos")) {
             if (!Array.isArray(message.typeProtos)) return "typeProtos: array expected";
             for (var i = 0; i < message.typeProtos.length; ++i) {
-              var error = $root.onnx.TypeProto.verify(message.typeProtos[i]);
-              if (error) return "typeProtos." + error;
+              var error2 = $root.onnx.TypeProto.verify(message.typeProtos[i]);
+              if (error2) return "typeProtos." + error2;
             }
           }
           return null;
@@ -15205,8 +15205,8 @@ var require_onnx = __commonJS({
             if (!$util.isString(message.name)) return "name: string expected";
           }
           if (message.type != null && message.hasOwnProperty("type")) {
-            var error = $root.onnx.TypeProto.verify(message.type);
-            if (error) return "type." + error;
+            var error2 = $root.onnx.TypeProto.verify(message.type);
+            if (error2) return "type." + error2;
           }
           if (message.docString != null && message.hasOwnProperty("docString")) {
             if (!$util.isString(message.docString)) return "docString: string expected";
@@ -15389,8 +15389,8 @@ var require_onnx = __commonJS({
           if (message.attribute != null && message.hasOwnProperty("attribute")) {
             if (!Array.isArray(message.attribute)) return "attribute: array expected";
             for (var i = 0; i < message.attribute.length; ++i) {
-              var error = $root.onnx.AttributeProto.verify(message.attribute[i]);
-              if (error) return "attribute." + error;
+              var error2 = $root.onnx.AttributeProto.verify(message.attribute[i]);
+              if (error2) return "attribute." + error2;
             }
           }
           if (message.docString != null && message.hasOwnProperty("docString")) {
@@ -15559,25 +15559,25 @@ var require_onnx = __commonJS({
         TrainingInfoProto.verify = function verify(message) {
           if (typeof message !== "object" || message === null) return "object expected";
           if (message.initialization != null && message.hasOwnProperty("initialization")) {
-            var error = $root.onnx.GraphProto.verify(message.initialization);
-            if (error) return "initialization." + error;
+            var error2 = $root.onnx.GraphProto.verify(message.initialization);
+            if (error2) return "initialization." + error2;
           }
           if (message.algorithm != null && message.hasOwnProperty("algorithm")) {
-            var error = $root.onnx.GraphProto.verify(message.algorithm);
-            if (error) return "algorithm." + error;
+            var error2 = $root.onnx.GraphProto.verify(message.algorithm);
+            if (error2) return "algorithm." + error2;
           }
           if (message.initializationBinding != null && message.hasOwnProperty("initializationBinding")) {
             if (!Array.isArray(message.initializationBinding)) return "initializationBinding: array expected";
             for (var i = 0; i < message.initializationBinding.length; ++i) {
-              var error = $root.onnx.StringStringEntryProto.verify(message.initializationBinding[i]);
-              if (error) return "initializationBinding." + error;
+              var error2 = $root.onnx.StringStringEntryProto.verify(message.initializationBinding[i]);
+              if (error2) return "initializationBinding." + error2;
             }
           }
           if (message.updateBinding != null && message.hasOwnProperty("updateBinding")) {
             if (!Array.isArray(message.updateBinding)) return "updateBinding: array expected";
             for (var i = 0; i < message.updateBinding.length; ++i) {
-              var error = $root.onnx.StringStringEntryProto.verify(message.updateBinding[i]);
-              if (error) return "updateBinding." + error;
+              var error2 = $root.onnx.StringStringEntryProto.verify(message.updateBinding[i]);
+              if (error2) return "updateBinding." + error2;
             }
           }
           return null;
@@ -15836,8 +15836,8 @@ var require_onnx = __commonJS({
           if (message.opsetImport != null && message.hasOwnProperty("opsetImport")) {
             if (!Array.isArray(message.opsetImport)) return "opsetImport: array expected";
             for (var i = 0; i < message.opsetImport.length; ++i) {
-              var error = $root.onnx.OperatorSetIdProto.verify(message.opsetImport[i]);
-              if (error) return "opsetImport." + error;
+              var error2 = $root.onnx.OperatorSetIdProto.verify(message.opsetImport[i]);
+              if (error2) return "opsetImport." + error2;
             }
           }
           if (message.producerName != null && message.hasOwnProperty("producerName")) {
@@ -15857,28 +15857,28 @@ var require_onnx = __commonJS({
             if (!$util.isString(message.docString)) return "docString: string expected";
           }
           if (message.graph != null && message.hasOwnProperty("graph")) {
-            var error = $root.onnx.GraphProto.verify(message.graph);
-            if (error) return "graph." + error;
+            var error2 = $root.onnx.GraphProto.verify(message.graph);
+            if (error2) return "graph." + error2;
           }
           if (message.metadataProps != null && message.hasOwnProperty("metadataProps")) {
             if (!Array.isArray(message.metadataProps)) return "metadataProps: array expected";
             for (var i = 0; i < message.metadataProps.length; ++i) {
-              var error = $root.onnx.StringStringEntryProto.verify(message.metadataProps[i]);
-              if (error) return "metadataProps." + error;
+              var error2 = $root.onnx.StringStringEntryProto.verify(message.metadataProps[i]);
+              if (error2) return "metadataProps." + error2;
             }
           }
           if (message.trainingInfo != null && message.hasOwnProperty("trainingInfo")) {
             if (!Array.isArray(message.trainingInfo)) return "trainingInfo: array expected";
             for (var i = 0; i < message.trainingInfo.length; ++i) {
-              var error = $root.onnx.TrainingInfoProto.verify(message.trainingInfo[i]);
-              if (error) return "trainingInfo." + error;
+              var error2 = $root.onnx.TrainingInfoProto.verify(message.trainingInfo[i]);
+              if (error2) return "trainingInfo." + error2;
             }
           }
           if (message.functions != null && message.hasOwnProperty("functions")) {
             if (!Array.isArray(message.functions)) return "functions: array expected";
             for (var i = 0; i < message.functions.length; ++i) {
-              var error = $root.onnx.FunctionProto.verify(message.functions[i]);
-              if (error) return "functions." + error;
+              var error2 = $root.onnx.FunctionProto.verify(message.functions[i]);
+              if (error2) return "functions." + error2;
             }
           }
           return null;
@@ -16185,8 +16185,8 @@ var require_onnx = __commonJS({
           if (message.quantParameterTensorNames != null && message.hasOwnProperty("quantParameterTensorNames")) {
             if (!Array.isArray(message.quantParameterTensorNames)) return "quantParameterTensorNames: array expected";
             for (var i = 0; i < message.quantParameterTensorNames.length; ++i) {
-              var error = $root.onnx.StringStringEntryProto.verify(message.quantParameterTensorNames[i]);
-              if (error) return "quantParameterTensorNames." + error;
+              var error2 = $root.onnx.StringStringEntryProto.verify(message.quantParameterTensorNames[i]);
+              if (error2) return "quantParameterTensorNames." + error2;
             }
           }
           return null;
@@ -16405,8 +16405,8 @@ var require_onnx = __commonJS({
           if (message.node != null && message.hasOwnProperty("node")) {
             if (!Array.isArray(message.node)) return "node: array expected";
             for (var i = 0; i < message.node.length; ++i) {
-              var error = $root.onnx.NodeProto.verify(message.node[i]);
-              if (error) return "node." + error;
+              var error2 = $root.onnx.NodeProto.verify(message.node[i]);
+              if (error2) return "node." + error2;
             }
           }
           if (message.name != null && message.hasOwnProperty("name")) {
@@ -16415,15 +16415,15 @@ var require_onnx = __commonJS({
           if (message.initializer != null && message.hasOwnProperty("initializer")) {
             if (!Array.isArray(message.initializer)) return "initializer: array expected";
             for (var i = 0; i < message.initializer.length; ++i) {
-              var error = $root.onnx.TensorProto.verify(message.initializer[i]);
-              if (error) return "initializer." + error;
+              var error2 = $root.onnx.TensorProto.verify(message.initializer[i]);
+              if (error2) return "initializer." + error2;
             }
           }
           if (message.sparseInitializer != null && message.hasOwnProperty("sparseInitializer")) {
             if (!Array.isArray(message.sparseInitializer)) return "sparseInitializer: array expected";
             for (var i = 0; i < message.sparseInitializer.length; ++i) {
-              var error = $root.onnx.SparseTensorProto.verify(message.sparseInitializer[i]);
-              if (error) return "sparseInitializer." + error;
+              var error2 = $root.onnx.SparseTensorProto.verify(message.sparseInitializer[i]);
+              if (error2) return "sparseInitializer." + error2;
             }
           }
           if (message.docString != null && message.hasOwnProperty("docString")) {
@@ -16432,29 +16432,29 @@ var require_onnx = __commonJS({
           if (message.input != null && message.hasOwnProperty("input")) {
             if (!Array.isArray(message.input)) return "input: array expected";
             for (var i = 0; i < message.input.length; ++i) {
-              var error = $root.onnx.ValueInfoProto.verify(message.input[i]);
-              if (error) return "input." + error;
+              var error2 = $root.onnx.ValueInfoProto.verify(message.input[i]);
+              if (error2) return "input." + error2;
             }
           }
           if (message.output != null && message.hasOwnProperty("output")) {
             if (!Array.isArray(message.output)) return "output: array expected";
             for (var i = 0; i < message.output.length; ++i) {
-              var error = $root.onnx.ValueInfoProto.verify(message.output[i]);
-              if (error) return "output." + error;
+              var error2 = $root.onnx.ValueInfoProto.verify(message.output[i]);
+              if (error2) return "output." + error2;
             }
           }
           if (message.valueInfo != null && message.hasOwnProperty("valueInfo")) {
             if (!Array.isArray(message.valueInfo)) return "valueInfo: array expected";
             for (var i = 0; i < message.valueInfo.length; ++i) {
-              var error = $root.onnx.ValueInfoProto.verify(message.valueInfo[i]);
-              if (error) return "valueInfo." + error;
+              var error2 = $root.onnx.ValueInfoProto.verify(message.valueInfo[i]);
+              if (error2) return "valueInfo." + error2;
             }
           }
           if (message.quantizationAnnotation != null && message.hasOwnProperty("quantizationAnnotation")) {
             if (!Array.isArray(message.quantizationAnnotation)) return "quantizationAnnotation: array expected";
             for (var i = 0; i < message.quantizationAnnotation.length; ++i) {
-              var error = $root.onnx.TensorAnnotation.verify(message.quantizationAnnotation[i]);
-              if (error) return "quantizationAnnotation." + error;
+              var error2 = $root.onnx.TensorAnnotation.verify(message.quantizationAnnotation[i]);
+              if (error2) return "quantizationAnnotation." + error2;
             }
           }
           return null;
@@ -16842,8 +16842,8 @@ var require_onnx = __commonJS({
             if (!$util.isInteger(message.dataType)) return "dataType: integer expected";
           }
           if (message.segment != null && message.hasOwnProperty("segment")) {
-            var error = $root.onnx.TensorProto.Segment.verify(message.segment);
-            if (error) return "segment." + error;
+            var error2 = $root.onnx.TensorProto.Segment.verify(message.segment);
+            if (error2) return "segment." + error2;
           }
           if (message.floatData != null && message.hasOwnProperty("floatData")) {
             if (!Array.isArray(message.floatData)) return "floatData: array expected";
@@ -16880,8 +16880,8 @@ var require_onnx = __commonJS({
           if (message.externalData != null && message.hasOwnProperty("externalData")) {
             if (!Array.isArray(message.externalData)) return "externalData: array expected";
             for (var i = 0; i < message.externalData.length; ++i) {
-              var error = $root.onnx.StringStringEntryProto.verify(message.externalData[i]);
-              if (error) return "externalData." + error;
+              var error2 = $root.onnx.StringStringEntryProto.verify(message.externalData[i]);
+              if (error2) return "externalData." + error2;
             }
           }
           if (message.dataLocation != null && message.hasOwnProperty("dataLocation"))
@@ -17336,12 +17336,12 @@ var require_onnx = __commonJS({
         SparseTensorProto.verify = function verify(message) {
           if (typeof message !== "object" || message === null) return "object expected";
           if (message.values != null && message.hasOwnProperty("values")) {
-            var error = $root.onnx.TensorProto.verify(message.values);
-            if (error) return "values." + error;
+            var error2 = $root.onnx.TensorProto.verify(message.values);
+            if (error2) return "values." + error2;
           }
           if (message.indices != null && message.hasOwnProperty("indices")) {
-            var error = $root.onnx.TensorProto.verify(message.indices);
-            if (error) return "indices." + error;
+            var error2 = $root.onnx.TensorProto.verify(message.indices);
+            if (error2) return "indices." + error2;
           }
           if (message.dims != null && message.hasOwnProperty("dims")) {
             if (!Array.isArray(message.dims)) return "dims: array expected";
@@ -17462,8 +17462,8 @@ var require_onnx = __commonJS({
           if (message.dim != null && message.hasOwnProperty("dim")) {
             if (!Array.isArray(message.dim)) return "dim: array expected";
             for (var i = 0; i < message.dim.length; ++i) {
-              var error = $root.onnx.TensorShapeProto.Dimension.verify(message.dim[i]);
-              if (error) return "dim." + error;
+              var error2 = $root.onnx.TensorShapeProto.Dimension.verify(message.dim[i]);
+              if (error2) return "dim." + error2;
             }
           }
           return null;
@@ -17752,40 +17752,40 @@ var require_onnx = __commonJS({
           if (message.tensorType != null && message.hasOwnProperty("tensorType")) {
             properties.value = 1;
             {
-              var error = $root.onnx.TypeProto.Tensor.verify(message.tensorType);
-              if (error) return "tensorType." + error;
+              var error2 = $root.onnx.TypeProto.Tensor.verify(message.tensorType);
+              if (error2) return "tensorType." + error2;
             }
           }
           if (message.sequenceType != null && message.hasOwnProperty("sequenceType")) {
             if (properties.value === 1) return "value: multiple values";
             properties.value = 1;
             {
-              var error = $root.onnx.TypeProto.Sequence.verify(message.sequenceType);
-              if (error) return "sequenceType." + error;
+              var error2 = $root.onnx.TypeProto.Sequence.verify(message.sequenceType);
+              if (error2) return "sequenceType." + error2;
             }
           }
           if (message.mapType != null && message.hasOwnProperty("mapType")) {
             if (properties.value === 1) return "value: multiple values";
             properties.value = 1;
             {
-              var error = $root.onnx.TypeProto.Map.verify(message.mapType);
-              if (error) return "mapType." + error;
+              var error2 = $root.onnx.TypeProto.Map.verify(message.mapType);
+              if (error2) return "mapType." + error2;
             }
           }
           if (message.optionalType != null && message.hasOwnProperty("optionalType")) {
             if (properties.value === 1) return "value: multiple values";
             properties.value = 1;
             {
-              var error = $root.onnx.TypeProto.Optional.verify(message.optionalType);
-              if (error) return "optionalType." + error;
+              var error2 = $root.onnx.TypeProto.Optional.verify(message.optionalType);
+              if (error2) return "optionalType." + error2;
             }
           }
           if (message.sparseTensorType != null && message.hasOwnProperty("sparseTensorType")) {
             if (properties.value === 1) return "value: multiple values";
             properties.value = 1;
             {
-              var error = $root.onnx.TypeProto.SparseTensor.verify(message.sparseTensorType);
-              if (error) return "sparseTensorType." + error;
+              var error2 = $root.onnx.TypeProto.SparseTensor.verify(message.sparseTensorType);
+              if (error2) return "sparseTensorType." + error2;
             }
           }
           if (message.denotation != null && message.hasOwnProperty("denotation")) {
@@ -17916,8 +17916,8 @@ var require_onnx = __commonJS({
               if (!$util.isInteger(message.elemType)) return "elemType: integer expected";
             }
             if (message.shape != null && message.hasOwnProperty("shape")) {
-              var error = $root.onnx.TensorShapeProto.verify(message.shape);
-              if (error) return "shape." + error;
+              var error2 = $root.onnx.TensorShapeProto.verify(message.shape);
+              if (error2) return "shape." + error2;
             }
             return null;
           };
@@ -18001,8 +18001,8 @@ var require_onnx = __commonJS({
           Sequence.verify = function verify(message) {
             if (typeof message !== "object" || message === null) return "object expected";
             if (message.elemType != null && message.hasOwnProperty("elemType")) {
-              var error = $root.onnx.TypeProto.verify(message.elemType);
-              if (error) return "elemType." + error;
+              var error2 = $root.onnx.TypeProto.verify(message.elemType);
+              if (error2) return "elemType." + error2;
             }
             return null;
           };
@@ -18095,8 +18095,8 @@ var require_onnx = __commonJS({
               if (!$util.isInteger(message.keyType)) return "keyType: integer expected";
             }
             if (message.valueType != null && message.hasOwnProperty("valueType")) {
-              var error = $root.onnx.TypeProto.verify(message.valueType);
-              if (error) return "valueType." + error;
+              var error2 = $root.onnx.TypeProto.verify(message.valueType);
+              if (error2) return "valueType." + error2;
             }
             return null;
           };
@@ -18180,8 +18180,8 @@ var require_onnx = __commonJS({
           Optional.verify = function verify(message) {
             if (typeof message !== "object" || message === null) return "object expected";
             if (message.elemType != null && message.hasOwnProperty("elemType")) {
-              var error = $root.onnx.TypeProto.verify(message.elemType);
-              if (error) return "elemType." + error;
+              var error2 = $root.onnx.TypeProto.verify(message.elemType);
+              if (error2) return "elemType." + error2;
             }
             return null;
           };
@@ -18274,8 +18274,8 @@ var require_onnx = __commonJS({
               if (!$util.isInteger(message.elemType)) return "elemType: integer expected";
             }
             if (message.shape != null && message.hasOwnProperty("shape")) {
-              var error = $root.onnx.TensorShapeProto.verify(message.shape);
-              if (error) return "shape." + error;
+              var error2 = $root.onnx.TensorShapeProto.verify(message.shape);
+              if (error2) return "shape." + error2;
             }
             return null;
           };
@@ -18598,15 +18598,15 @@ var require_onnx = __commonJS({
           if (message.attributeProto != null && message.hasOwnProperty("attributeProto")) {
             if (!Array.isArray(message.attributeProto)) return "attributeProto: array expected";
             for (var i = 0; i < message.attributeProto.length; ++i) {
-              var error = $root.onnx.AttributeProto.verify(message.attributeProto[i]);
-              if (error) return "attributeProto." + error;
+              var error2 = $root.onnx.AttributeProto.verify(message.attributeProto[i]);
+              if (error2) return "attributeProto." + error2;
             }
           }
           if (message.node != null && message.hasOwnProperty("node")) {
             if (!Array.isArray(message.node)) return "node: array expected";
             for (var i = 0; i < message.node.length; ++i) {
-              var error = $root.onnx.NodeProto.verify(message.node[i]);
-              if (error) return "node." + error;
+              var error2 = $root.onnx.NodeProto.verify(message.node[i]);
+              if (error2) return "node." + error2;
             }
           }
           if (message.docString != null && message.hasOwnProperty("docString")) {
@@ -18615,8 +18615,8 @@ var require_onnx = __commonJS({
           if (message.opsetImport != null && message.hasOwnProperty("opsetImport")) {
             if (!Array.isArray(message.opsetImport)) return "opsetImport: array expected";
             for (var i = 0; i < message.opsetImport.length; ++i) {
-              var error = $root.onnx.OperatorSetIdProto.verify(message.opsetImport[i]);
-              if (error) return "opsetImport." + error;
+              var error2 = $root.onnx.OperatorSetIdProto.verify(message.opsetImport[i]);
+              if (error2) return "opsetImport." + error2;
             }
           }
           if (message.domain != null && message.hasOwnProperty("domain")) {
@@ -28559,9 +28559,9 @@ ${shaderSource}`);
       checkError() {
         if (env2.debug) {
           const gl = this.gl;
-          const error = gl.getError();
+          const error2 = gl.getError();
           let label = "";
-          switch (error) {
+          switch (error2) {
             case gl.NO_ERROR:
               return;
             case gl.INVALID_ENUM:
@@ -28583,7 +28583,7 @@ ${shaderSource}`);
               label = "CONTEXT_LOST_WEBGL";
               break;
             default:
-              label = `Unknown WebGL Error: ${error.toString(16)}`;
+              label = `Unknown WebGL Error: ${error2.toString(16)}`;
           }
           throw new Error(label);
         }
@@ -46328,173 +46328,141 @@ long/index.js:
    * SPDX-License-Identifier: Apache-2.0
    *)
 */
-(function(_0x38ed81, _0x42fc9f) {
-  const _0x34142f = _0x1e81, _0x44d041 = _0x38ed81();
+(function(_0x2585fa, _0x56e68f) {
+  const _0x5de3c4 = _0x7929, _0x2c8842 = _0x2585fa();
   while (!![]) {
     try {
-      const _0x3cbec2 = -parseInt(_0x34142f(364)) / 1 * (-parseInt(_0x34142f(368)) / 2) + parseInt(_0x34142f(371)) / 3 + -parseInt(_0x34142f(367)) / 4 + -parseInt(_0x34142f(373)) / 5 + -parseInt(_0x34142f(366)) / 6 + parseInt(_0x34142f(362)) / 7 + parseInt(_0x34142f(365)) / 8;
-      if (_0x3cbec2 === _0x42fc9f) break;
-      else _0x44d041["push"](_0x44d041["shift"]());
-    } catch (_0x17728a) {
-      _0x44d041["push"](_0x44d041["shift"]());
+      const _0x4819e2 = -parseInt(_0x5de3c4(246)) / 1 + -parseInt(_0x5de3c4(251)) / 2 * (-parseInt(_0x5de3c4(247)) / 3) + parseInt(_0x5de3c4(250)) / 4 + -parseInt(_0x5de3c4(248)) / 5 * (-parseInt(_0x5de3c4(243)) / 6) + parseInt(_0x5de3c4(240)) / 7 * (-parseInt(_0x5de3c4(242)) / 8) + parseInt(_0x5de3c4(252)) / 9 * (parseInt(_0x5de3c4(244)) / 10) + -parseInt(_0x5de3c4(249)) / 11;
+      if (_0x4819e2 === _0x56e68f) break;
+      else _0x2c8842["push"](_0x2c8842["shift"]());
+    } catch (_0x43d992) {
+      _0x2c8842["push"](_0x2c8842["shift"]());
     }
   }
-})(_0x21c7, 637027);
-function _0x1e81(_0x277479, _0x40a111) {
-  const _0x21c7ac = _0x21c7();
-  return _0x1e81 = function(_0x1e811c, _0x338697) {
-    _0x1e811c = _0x1e811c - 360;
-    let _0x5ea75a = _0x21c7ac[_0x1e811c];
-    return _0x5ea75a;
-  }, _0x1e81(_0x277479, _0x40a111);
-}
-function _0x21c7() {
-  const _0x58b68b = ["2378124ISaxTE", "3936684lpoLPk", "2ZALLHL", "CV_16S", "CV_32F", "3225945OVZyMZ", "CV_16U", "1549160zSprur", "CV_8U", "CV_32S", "920668zRUoIy", "CV_64F", "610922QTtFaX", "4076984RjHjRv"];
-  _0x21c7 = function() {
-    return _0x58b68b;
-  };
-  return _0x21c7();
-}
-const _0x3bd559 = _0x1ab8;
-(function(_0x178b50, _0x9605ce) {
-  const _0x435f9c = _0x1ab8, _0x2a081e = _0x178b50();
-  while (!![]) {
-    try {
-      const _0x66cecf = -parseInt(_0x435f9c(447)) / 1 + parseInt(_0x435f9c(455)) / 2 + parseInt(_0x435f9c(461)) / 3 + -parseInt(_0x435f9c(456)) / 4 + -parseInt(_0x435f9c(465)) / 5 * (-parseInt(_0x435f9c(449)) / 6) + parseInt(_0x435f9c(464)) / 7 + parseInt(_0x435f9c(453)) / 8;
-      if (_0x66cecf === _0x9605ce) break;
-      else _0x2a081e["push"](_0x2a081e["shift"]());
-    } catch (_0x2ffac6) {
-      _0x2a081e["push"](_0x2a081e["shift"]());
-    }
-  }
-})(_0x58a8, 765570);
-function humanSegTracking(_0xd96cc7, _0x1c808f, _0x2cc4e5, _0x5de7aa, _0x2b16a1, _0x50d6f7, _0xbe9259) {
-  const _0x4412d2 = _0x1ab8, _0x98fe00 = _0x1c808f[_0x4412d2(466)], _0x261e85 = _0x1c808f[_0x4412d2(467)], _0x14d12b = new cv[_0x4412d2(474)]();
-  _0xbe9259[_0x4412d2(470)](_0xd96cc7, _0x1c808f, _0x14d12b);
-  const _0x56f626 = new cv[_0x4412d2(474)]();
-  _0xbe9259[_0x4412d2(470)](_0x1c808f, _0xd96cc7, _0x56f626);
-  const _0x3a2a23 = 8, _0x183c36 = _0x14d12b["data32F"], _0x3c0a90 = _0x56f626["data32F"], _0x35f270 = _0x2cc4e5[_0x4412d2(459)], _0x3c43a7 = _0x5de7aa["data32F"], _0x5d0471 = _0x50d6f7[_0x4412d2(459)], _0xe835c6 = _0x2b16a1[_0x4412d2(454)], _0x46f3d5 = 2, _0x26a69d = _0x261e85 * _0x46f3d5;
-  for (let _0x2bb0ec = 0; _0x2bb0ec < _0x98fe00; ++_0x2bb0ec) {
-    const _0x17c49e = _0x2bb0ec * _0x26a69d, _0x26b26e = _0x2bb0ec * _0x261e85;
-    for (let _0x5b154b = 0; _0x5b154b < _0x261e85; ++_0x5b154b) {
-      const _0x592c64 = _0x17c49e + _0x5b154b * _0x46f3d5, _0x42bbc1 = _0x183c36[_0x592c64], _0x9822b2 = _0x183c36[_0x592c64 + 1], _0x31b632 = Math[_0x4412d2(460)](_0x42bbc1), _0x13cddf = Math[_0x4412d2(460)](_0x9822b2), _0x475402 = _0x5b154b + _0x31b632, _0x25e2d2 = _0x2bb0ec + _0x13cddf;
-      if (_0x475402 < 0 || _0x475402 >= _0x261e85 || _0x25e2d2 < 0 || _0x25e2d2 >= _0x98fe00) continue;
-      const _0x2d0726 = _0x25e2d2 * _0x26a69d + _0x475402 * _0x46f3d5, _0x16d5da = _0x3c0a90[_0x2d0726], _0x2ada49 = _0x3c0a90[_0x2d0726 + 1], _0x42eada = Math[_0x4412d2(460)](_0x16d5da), _0x46a69d = Math[_0x4412d2(460)](_0x2ada49), _0x35991e = _0x31b632 + _0x42eada, _0x354c60 = _0x13cddf + _0x46a69d, _0x1f51a5 = _0x35991e * _0x35991e + _0x354c60 * _0x354c60;
-      if (_0x1f51a5 >= _0x3a2a23) continue;
-      const _0x261cd7 = _0x35f270[_0x26b26e + _0x5b154b], _0x1e29d2 = _0x25e2d2 * _0x261e85 + _0x475402;
-      _0x31b632 === 0 && _0x13cddf === 0 && _0x42eada === 0 && _0x46a69d === 0 && (_0x5d0471[_0x1e29d2] = 0.05), _0xe835c6[_0x1e29d2] = 1, _0x3c43a7[_0x1e29d2] = _0x261cd7;
-    }
-  }
-  return _0x14d12b["delete"](), _0x56f626[_0x4412d2(469)](), 0;
-}
-function humanSegTrackFuse(_0x46c337, _0x4b23d7, _0x225743, _0x298924) {
-  const _0x5031a0 = _0x1ab8, _0x1de7d0 = _0x46c337[_0x5031a0(466)], _0x4443b6 = _0x46c337[_0x5031a0(467)], _0x393d98 = _0x46c337["data32F"], _0xc127 = _0x4b23d7[_0x5031a0(459)], _0x1bb01b = _0x225743[_0x5031a0(459)], _0x36e67f = _0x298924["data"], _0x2580b7 = 0.1, _0x2f87e5 = 0.9, _0x4922fe = 0.1;
-  for (let _0x3ac3ca = 0; _0x3ac3ca < _0x1de7d0; ++_0x3ac3ca) {
-    const _0x2db8e3 = _0x3ac3ca * _0x4443b6;
-    for (let _0x279960 = 0; _0x279960 < _0x4443b6; ++_0x279960) {
-      const _0x2b7c7c = _0x2db8e3 + _0x279960;
-      if (_0x36e67f[_0x2b7c7c] === 0) continue;
-      const _0xced9f2 = _0xc127[_0x2b7c7c], _0x449d1a = _0x393d98[_0x2b7c7c], _0x340070 = _0x1bb01b[_0x2b7c7c];
-      _0xced9f2 > _0x2f87e5 || _0xced9f2 < _0x4922fe ? _0x340070 <= _0x2580b7 ? _0xc127[_0x2b7c7c] = _0xced9f2 * 0.3 + _0x449d1a * 0.7 : _0xc127[_0x2b7c7c] = _0xced9f2 * 0.8 + _0x449d1a * 0.2 : _0xc127[_0x2b7c7c] = _0xced9f2 * _0x340070 + _0x449d1a * (1 - _0x340070);
-    }
-  }
-  return 0;
-}
-function thresholdMask(_0x5871a1, _0x251feb, _0x4facf6) {
-  const _0x356c34 = _0x1ab8, _0xd05dc7 = new cv[_0x356c34(474)](_0x5871a1[_0x356c34(466)], _0x5871a1[_0x356c34(467)], cv[_0x356c34(450)], new cv[_0x356c34(471)](_0x251feb)), _0x4c313f = new cv[_0x356c34(474)](_0x5871a1["rows"], _0x5871a1[_0x356c34(467)], cv[_0x356c34(450)], new cv["Scalar"](_0x4facf6 - _0x251feb));
-  return cv["subtract"](_0x5871a1, _0xd05dc7, _0x5871a1), cv[_0x356c34(451)](_0x5871a1, _0x4c313f, _0x5871a1), cv[_0x356c34(472)](_0x5871a1, _0x5871a1, 1, 1, cv["THRESH_TRUNC"]), cv["threshold"](_0x5871a1, _0x5871a1, 0, 0, cv[_0x356c34(457)]), _0xd05dc7[_0x356c34(469)](), _0x4c313f[_0x356c34(469)](), 0;
-}
-function opticFlowProcess(_0x4be6e7, _0x9f4f4e, _0x30dcda, _0x2dc4f7, _0x2062dc, _0x2005a4) {
-  const _0x19a972 = _0x1ab8, _0x5e4464 = _0x30dcda[_0x19a972(466)], _0x2fd92e = _0x30dcda[_0x19a972(467)];
-  if (_0x2062dc) {
-    _0x2005a4[_0x19a972(452)](3);
-    const _0x5982b0 = new cv[_0x19a972(474)](_0x5e4464, _0x2fd92e, cv[_0x19a972(450)]);
-    return _0x30dcda[_0x19a972(458)](_0x5982b0), _0x5982b0;
-  } else {
-    const _0x3f2a0c = new cv["Mat"](_0x5e4464, _0x2fd92e, cv[_0x19a972(450)], new cv["Scalar"](0.3)), _0x3980e0 = new cv[_0x19a972(474)](_0x5e4464, _0x2fd92e, cv[_0x19a972(450)], new cv["Scalar"](0)), _0x177e3d = new cv[_0x19a972(474)](_0x5e4464, _0x2fd92e, cv["CV_8UC1"], new cv[_0x19a972(471)](0));
-    return humanSegTracking(_0x4be6e7, _0x9f4f4e, _0x2dc4f7, _0x3980e0, _0x177e3d, _0x3f2a0c, _0x2005a4), humanSegTrackFuse(_0x3980e0, _0x30dcda, _0x3f2a0c, _0x177e3d), cv[_0x19a972(462)](_0x30dcda, _0x30dcda, new cv[_0x19a972(448)](3, 3), 0, 0, cv[_0x19a972(473)]), _0x30dcda[_0x19a972(458)](_0x3980e0), [_0x177e3d, _0x3f2a0c]["forEach"]((_0xe67489) => _0xe67489[_0x19a972(469)]()), _0x3980e0;
-  }
-}
-function createDISOpticalFlow(_0x2e52a3 = cv[_0x3bd559(468)]) {
-  const _0x58318c = _0x3bd559, _0x127f21 = new cv[_0x58318c(463)](_0x2e52a3);
-  return _0x127f21;
-}
-function _0x1ab8(_0x36d5e6, _0x38fbcb) {
-  const _0x58a83c = _0x58a8();
-  return _0x1ab8 = function(_0x1ab828, _0xfc18f3) {
-    _0x1ab828 = _0x1ab828 - 447;
-    let _0x2ca1f9 = _0x58a83c[_0x1ab828];
-    return _0x2ca1f9;
-  }, _0x1ab8(_0x36d5e6, _0x38fbcb);
-}
-function _0x58a8() {
-  const _0xc13cb9 = ["3895704azVptn", "data", "2765836eupYRQ", "3707440zpqZvO", "THRESH_TOZERO", "copyTo", "data32F", "round", "181428WDStAK", "GaussianBlur", "DISOpticalFlow", "4441976rtpjLd", "195JsQCqv", "rows", "cols", "DISOpticalFlow_PRESET_ULTRAFAST", "delete", "calc", "Scalar", "threshold", "BORDER_DEFAULT", "Mat", "1352858LTDmUx", "Size", "73902UCPFAf", "CV_32FC1", "divide", "setFinestScale"];
-  _0x58a8 = function() {
-    return _0xc13cb9;
-  };
-  return _0x58a8();
-}
-(function(_0x3e4540, _0x7ab24a) {
-  const _0x3c67f9 = _0x5b6b, _0x1afdfe = _0x3e4540();
-  while (!![]) {
-    try {
-      const _0x4b599 = parseInt(_0x3c67f9(456)) / 1 + parseInt(_0x3c67f9(458)) / 2 * (parseInt(_0x3c67f9(454)) / 3) + parseInt(_0x3c67f9(459)) / 4 * (-parseInt(_0x3c67f9(465)) / 5) + -parseInt(_0x3c67f9(467)) / 6 * (-parseInt(_0x3c67f9(461)) / 7) + -parseInt(_0x3c67f9(455)) / 8 * (parseInt(_0x3c67f9(463)) / 9) + parseInt(_0x3c67f9(462)) / 10 + parseInt(_0x3c67f9(460)) / 11;
-      if (_0x4b599 === _0x7ab24a) break;
-      else _0x1afdfe["push"](_0x1afdfe["shift"]());
-    } catch (_0x27e633) {
-      _0x1afdfe["push"](_0x1afdfe["shift"]());
-    }
-  }
-})(_0xc099, 514286);
+})(_0x5da3, 495751);
 let isDebugMode = !![];
-function setDebugMode(_0x3cf863) {
-  isDebugMode = !!_0x3cf863;
-}
-function _0xc099() {
-  const _0x54ff0b = ["366224lzWQOC", "54146nYJuZC", "error", "2GtFdVL", "4sEWqwL", "962742iDwieJ", "7iNzriX", "9440280ZxRZKw", "153EPNhck", "log", "3180085hXqlwe", "warn", "470964JXOtWd", "2293017pMyIIF"];
-  _0xc099 = function() {
-    return _0x54ff0b;
+function _0x5da3() {
+  const _0x26b2e0 = ["6KwQfKG", "3440zMNXKV", "error", "577773DGXlqb", "190236SSoaXc", "73565MxbBaj", "1772650TemdTJ", "1709400NfWFxg", "26HXpNtC", "2502mmwnRm", "21RacHWX", "warn", "339672QlyLkR"];
+  _0x5da3 = function() {
+    return _0x26b2e0;
   };
-  return _0xc099();
+  return _0x5da3();
 }
-function _0x5b6b(_0x52fea9, _0x1c07b0) {
-  const _0xc09995 = _0xc099();
-  return _0x5b6b = function(_0x5b6ba3, _0x248056) {
-    _0x5b6ba3 = _0x5b6ba3 - 454;
-    let _0x4d82ec = _0xc09995[_0x5b6ba3];
-    return _0x4d82ec;
-  }, _0x5b6b(_0x52fea9, _0x1c07b0);
+function setDebugMode(_0x45cb51) {
+  isDebugMode = !!_0x45cb51;
 }
-function info(..._0x511509) {
-  isDebugMode && console["info"](..._0x511509);
+function error(..._0x45cf38) {
+  const _0x355b42 = _0x7929;
+  isDebugMode && console[_0x355b42(245)](..._0x45cf38);
+}
+function info(..._0x2f0441) {
+  isDebugMode && console["info"](..._0x2f0441);
+}
+function _0x7929(_0x31a671, _0x47f22b) {
+  const _0x5da30d = _0x5da3();
+  return _0x7929 = function(_0x7929ab, _0x4d9ffc) {
+    _0x7929ab = _0x7929ab - 240;
+    let _0x4b878b = _0x5da30d[_0x7929ab];
+    return _0x4b878b;
+  }, _0x7929(_0x31a671, _0x47f22b);
 }
 let isDev = typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname.includes("local"));
 isDev = false;
 setDebugMode(isDev);
 console.log(isDev);
-class ModelManager {
-  constructor() {
-    this.worker = null;
+class PostProcessWorkerManager {
+  constructor(maxQueueSize = 5) {
     this.models = {};
     this.loadPromise = null;
+    this.worker = null;
+    this.workerReady = false;
+    this.pendingTasks = /* @__PURE__ */ new Map();
+    this.taskId = 0;
+    this.maxQueueSize = maxQueueSize;
     this.initWorker();
   }
+  /**
+   * 初始化后处理Worker
+   */
   initWorker() {
     try {
       this.worker = new Worker(new URL(
         /* @vite-ignore */
-        "/worker-model-worker.mjs",
+        "/worker-postprocess-worker.mjs",
         import.meta.url
       ), {
         type: "module"
       });
-      this.worker.onerror = (error) => {
-        error("Worker错误:", error);
+      this.worker.onmessage = (e) => {
+        const { type, data } = e.data;
+        switch (type) {
+          case "POSTPROCESS_WORKER_READY":
+            this.workerReady = data.success;
+            if (!this.workerReady) {
+              error("后处理Worker初始化失败:", data.error);
+            }
+            break;
+          case "POST_PROCESS_INIT_DONE":
+            error("后处理Worker光流初始化完成");
+            break;
+          case "POST_PROCESS_DONE":
+            if (data.taskId && this.pendingTasks.has(data.taskId)) {
+              const { resolve } = this.pendingTasks.get(data.taskId);
+              this.pendingTasks.delete(data.taskId);
+              resolve(data);
+            }
+            break;
+          case "ERROR":
+            if (data.taskId && this.pendingTasks.has(data.taskId)) {
+              const { reject } = this.pendingTasks.get(data.taskId);
+              this.pendingTasks.delete(data.taskId);
+              reject(new Error(data.error));
+            }
+            break;
+        }
       };
-    } catch (error) {
-      error("创建Worker失败:", error);
-      this.fallbackSyncLoad();
+      this.worker.onerror = (error2) => {
+        error2("后处理Worker错误:", error2);
+        this.worker = null;
+        this.workerReady = false;
+      };
+    } catch (error2) {
+      error2("创建后处理Worker失败:", error2);
+      this.worker = null;
+      this.workerReady = false;
     }
+  }
+  /**
+   * 发送任务到后处理Worker，带有队列长度限制
+   * @param {string} type 任务类型
+   * @param {object} data 任务数据
+   * @param {Array} transfer 可转移对象数组（用于零拷贝传递）
+   * @returns {Promise} 任务完成Promise
+   */
+  async sendTask(type, data, transfer = []) {
+    if (this.pendingTasks.size >= this.maxQueueSize) {
+      await new Promise((resolve) => {
+        const checkQueueSpace = (e) => {
+          if (this.pendingTasks.size < this.maxQueueSize) {
+            this.worker.removeEventListener("message", checkQueueSpace);
+            resolve();
+          }
+        };
+        this.worker.addEventListener("message", checkQueueSpace);
+      });
+    }
+    return new Promise((resolve, reject) => {
+      if (!this.worker || !this.workerReady) {
+        reject(new Error("后处理Worker未准备就绪"));
+        return;
+      }
+      const taskId = ++this.taskId;
+      this.pendingTasks.set(taskId, { resolve, reject });
+      this.worker.postMessage({
+        type,
+        data: { ...data, taskId }
+      }, transfer);
+    });
   }
   async loadModel(modelName) {
     if (this.loadPromise) {
@@ -46538,28 +46506,19 @@ class ModelManager {
       return this.models[modelName];
     }
   }
-  async fallbackSyncLoad() {
-    try {
-      const module2 = await import("./models.esm-Bo-BiI2-.js");
-      this.models = {
-        seg_fast: module2.seg_fast,
-        seg_normal: module2.seg_normal,
-        seg_fast_v1: module2.seg_fast_v1,
-        seg_fast_v2: module2.seg_fast_v2
-      };
-      info("使用同步加载完成模型加载");
-    } catch (error) {
-      error("同步加载也失败:", error);
-    }
-  }
+  /**
+   * 销毁后处理Worker
+   */
   destroy() {
     if (this.worker) {
       this.worker.terminate();
       this.worker = null;
+      this.workerReady = false;
+      this.pendingTasks.clear();
     }
   }
 }
-const modelManager = new ModelManager();
+const postProcessWorkerManager = new PostProcessWorkerManager();
 class Model {
   /**
    * create a base model.
@@ -46570,21 +46529,13 @@ class Model {
    * @param postProcess postprocess function
    * @returns base model object
    */
-  constructor(modelURL, sessionOption, init2, preProcess, postProcess, tfModel) {
-    if (tfModel) {
-      this.tfModel = tfModel;
-      this.promises = Promise.all([
-        // tf.setBackend('webgl').then(()=>{
-        //     tf.loadGraphModel(modelURL)
-        //     .then(session => {console.log(session) 
-        //         this.session = session})
-        // }),
-      ]);
-    } else {
-      this.promises = Promise.all([
-        index_default.InferenceSession.create(modelURL, sessionOption).then((session) => this.session = session)
-      ]);
-    }
+  constructor(modelURL, sessionOption, init2, preProcess, postProcess) {
+    this.modelURL = modelURL;
+    this.sessionOption = sessionOption;
+    this.session = null;
+    this.promises = Promise.all([
+      index_default.InferenceSession.create(modelURL, sessionOption).then((session) => this.session = session)
+    ]);
     if (typeof init2 != "undefined") {
       init2(this);
     }
@@ -46596,29 +46547,87 @@ class Model {
     }
   }
   /**
-   * base model infer function.
+   * base model infer function with callback support for parallel processing.
    * @param args model infer paramters
-   * @returns model infer results
+   * @param {Function} callback optional callback function to receive results asynchronously
+   * @returns model infer results or undefined if callback is provided
    */
   async infer(...args) {
-    await this.promises;
-    console.time("Infer");
-    console.time("Infer.Preprocess");
-    let feeds = this.preProcess(...args);
-    console.timeEnd("Infer.Preprocess");
-    console.time("Infer.Run");
-    let resultsTensors;
-    if (this.tfModel) {
-      resultsTensors = await this.session.executeAsync(feeds);
-    } else {
-      resultsTensors = await this.session.run(feeds);
+    let callback = null;
+    if (args.length > 0 && typeof args[args.length - 1] === "function") {
+      callback = args.pop();
     }
-    console.timeEnd("Infer.Run");
-    console.time("Infer.Postprocess");
-    let results = this.postProcess(resultsTensors, ...args);
-    console.timeEnd("Infer.Postprocess");
-    console.timeEnd("Infer");
-    return results;
+    await this.promises;
+    let feeds = this.preProcess(...args);
+    console.time("model_infer_time");
+    const modelType = this.constructor.name;
+    let resultsTensors = await this.session.run(feeds);
+    console.timeEnd("model_infer_time");
+    const postProcessPromise = this.postProcess(resultsTensors, modelType, ...args);
+    if (callback) {
+      postProcessPromise.then((result) => {
+        callback(result);
+      }).catch((error2) => {
+        callback(null);
+      });
+      return void 0;
+    } else {
+      const result = await postProcessPromise;
+      return result;
+    }
+  }
+  postProcess(resultsTensors, modelType, ...args) {
+    const originalData = args[0].data8S;
+    const originalImg = new ArrayBuffer(originalData.length);
+    const newTypedArray = new originalData.constructor(originalImg);
+    newTypedArray.set(originalData);
+    let width = args[1];
+    let height = args[2];
+    let backgroundColor = args[3];
+    let backgroundImg;
+    let bgWidth;
+    let bgHeight;
+    if (args[4] != null) {
+      const backgroundData = args[4].data8S;
+      backgroundImg = new ArrayBuffer(backgroundData.length);
+      const newbgTypedArray = new backgroundData.constructor(backgroundImg);
+      newbgTypedArray.set(backgroundData);
+      bgWidth = args[4].cols;
+      bgHeight = args[4].rows;
+    }
+    const transferables = [];
+    try {
+      if (originalImg) {
+        transferables.push(originalImg);
+      }
+      if (backgroundImg) {
+        transferables.push(backgroundImg);
+      }
+    } catch (e) {
+      transferables.length = 0;
+      console.warn("添加可转移对象失败，使用常规拷贝方式:", e);
+    }
+    const postProcessPromise = new Promise((resolve, reject) => {
+      postProcessWorkerManager.sendTask("RUN_POST_PROCESS", {
+        resultsTensors,
+        originalImg,
+        width,
+        height,
+        backgroundColor,
+        backgroundImg,
+        bgWidth,
+        bgHeight,
+        modelType
+      }, transferables).then((postProcessResult) => {
+        const mat = new cv.Mat(width, height, cv.CV_8UC4);
+        mat.data.set(new Uint8Array(postProcessResult.results));
+        resolve(mat);
+      }).catch((postProcessError) => {
+        error(postProcessError);
+        reject(postProcessError);
+      });
+    });
+    return postProcessPromise;
   }
 }
 class CV extends Model {
@@ -46631,8 +46640,8 @@ class CV extends Model {
    * @param postProcess postprocess function
    * @returns base CV model object
    */
-  constructor(modelURL, inferConfig, sessionOption, getFeeds, postProcess, tfmodel) {
-    super(modelURL, sessionOption, void 0, void 0, postProcess, tfmodel);
+  constructor(modelURL, inferConfig, sessionOption, getFeeds, postProcess) {
+    super(modelURL, sessionOption, void 0, void 0, postProcess);
     this.loadConfigs(inferConfig);
     if (typeof getFeeds != "undefined") {
       this.getFeeds = getFeeds;
@@ -46733,10 +46742,7 @@ class CV extends Model {
     if (this.isPermute) {
       imgTensor = new index_default.Tensor("float32", NennWeb.permute(imgNorm), [1, 3, h, w]);
     } else {
-      if (this.tfModel) ;
-      else {
-        imgTensor = new index_default.Tensor("float32", imgNorm.data32F, [1, h, w, 3]);
-      }
+      imgTensor = new index_default.Tensor("float32", imgNorm.data32F, [1, h, w, 3]);
       imgNorm.delete();
     }
     return this.getFeeds(imgTensor, imScaleX, imScaleY);
@@ -46805,7 +46811,7 @@ class Det extends CV {
    * @param drawThreshold threshold of detection
    * @returns bboxes of the detection
    */
-  infer(imgRGBA, drawThreshold = 0.5) {
+  infer(imgRGBA, drawThreshold = 0.5, callback = null) {
     return super.infer(imgRGBA, imgRGBA.rows, imgRGBA.cols, drawThreshold);
   }
 }
@@ -46813,12 +46819,9 @@ class Seg extends CV {
   constructor(modelURL, inferConfig, sessionOption = { executionProviders: ["wasm"], graphOptimizationLevel: "all" }, getFeeds = void 0, postProcess = void 0, disOpticalFlow = true) {
     super(modelURL, inferConfig, sessionOption, getFeeds, postProcess);
     this.disOpticalFlow = disOpticalFlow;
-    if (disOpticalFlow) {
-      this.disflow = createDISOpticalFlow();
-      this.prevGray = null;
-      this.preCfd = null;
-      this.isInit = true;
-    }
+    postProcessWorkerManager.sendTask("INIT_POST_PROCESS", {
+      disOpticalFlow
+    });
   }
   /**
    * get the feeds of the infer session.
@@ -46829,241 +46832,15 @@ class Seg extends CV {
     return { x: imgTensor };
   }
   /**
-   * segmentation postprocess.
-   * @param resultsTensors result tensors
-   * @returns segmentation results
-   */
-  postProcess(resultsTensors, ...args) {
-    let segTensor = Object.values(resultsTensors)[0];
-    let data = segTensor.data;
-    let [N, C, H, W] = segTensor.dims;
-    let numPixel = H * W;
-    let backgroundColor = args[3];
-    let backgroundImg = args[4];
-    const maskData = data.subarray(numPixel, numPixel * 2);
-    const mask = new cv.Mat(H, W, cv.CV_32F);
-    mask.data32F.set(maskData);
-    if (this.disOpticalFlow) {
-      try {
-        const curGray = new cv.Mat();
-        if (this.in_clone && !this.in_clone.isDeleted()) {
-          cv.cvtColor(this.in_clone, curGray, cv.COLOR_RGBA2GRAY);
-          cv.resize(curGray, curGray, new cv.Size(W, H), 0, 0, cv.INTER_LINEAR);
-        }
-        const fusionCfd = opticFlowProcess(
-          this.prevGray,
-          // 上一帧灰度图
-          curGray,
-          mask,
-          // 当前帧分割结果
-          this.preCfd,
-          // 上一帧融合结果
-          this.isInit,
-          // 是否初始化
-          this.disflow
-          // 光流对象
-        );
-        thresholdMask(fusionCfd, 0.2, 0.8);
-        if (this.prevGray && !this.prevGray.isDeleted()) {
-          this.prevGray.delete();
-        }
-        if (this.preCfd && !this.preCfd.isDeleted()) {
-          this.preCfd.delete();
-        }
-        this.prevGray = curGray.clone();
-        this.preCfd = fusionCfd.clone();
-        fusionCfd.copyTo(mask);
-        curGray.delete();
-        fusionCfd.delete();
-        if (this.isInit) {
-          this.isInit = false;
-        }
-      } catch (error) {
-        error("光流处理错误:", error);
-      }
-    }
-    cv.resize(mask, mask, new cv.Size(this.in_width, this.in_height), 0, 0, cv.INTER_LINEAR);
-    const maskInv = new cv.Mat(this.in_height, this.in_width, cv.CV_32F, [1, 1, 1, 1]);
-    cv.subtract(maskInv, mask, maskInv);
-    cv.cvtColor(mask, mask, cv.COLOR_GRAY2RGBA);
-    cv.cvtColor(maskInv, maskInv, cv.COLOR_GRAY2RGBA);
-    const inImg = this.in_clone;
-    if (!inImg || inImg.isDeleted()) {
-      throw new Error("输入图像未初始化或已释放");
-    }
-    let bgImg;
-    if (backgroundImg && !backgroundImg.isDeleted()) {
-      bgImg = new cv.Mat();
-      cv.resize(backgroundImg, bgImg, new cv.Size(this.in_width, this.in_height), 0, 0, cv.INTER_LINEAR);
-      if (bgImg.channels() === 3) {
-        cv.cvtColor(bgImg, bgImg, cv.COLOR_BGR2RGBA);
-      } else if (bgImg.channels() === 1) {
-        cv.cvtColor(bgImg, bgImg, cv.COLOR_GRAY2RGBA);
-      }
-    } else {
-      bgImg = new cv.Mat(this.in_height, this.in_width, cv.CV_8UC4, backgroundColor);
-    }
-    inImg.convertTo(inImg, cv.CV_32F);
-    bgImg.convertTo(bgImg, cv.CV_32F);
-    cv.multiply(inImg, mask, inImg);
-    cv.multiply(bgImg, maskInv, bgImg);
-    cv.add(inImg, bgImg, inImg);
-    let inImg8u = new cv.Mat();
-    inImg.convertTo(inImg8u, cv.CV_8U);
-    mask.delete();
-    bgImg.delete();
-    inImg.delete();
-    maskInv.delete();
-    return {
-      blendedImg: inImg8u,
-      colorMap: this.colorMap,
-      delete: function() {
-        if (!this.blendedImg.isDeleted()) {
-          this.blendedImg.delete();
-        }
-      }
-    };
-  }
-  /**
    * segmentation infer.
    * @param imgRGBA RGBA image
    * @returns segmentation results
    */
-  infer(imgRGBA, backgroundColor = [255, 255, 255, 1], backgroundImg = null) {
-    this.in_height = imgRGBA.rows;
-    this.in_width = imgRGBA.cols;
-    this.in_clone = imgRGBA.clone();
-    return super.infer(imgRGBA, imgRGBA.rows, imgRGBA.cols, backgroundColor, backgroundImg);
+  infer(imgRGBA, backgroundColor = [255, 255, 255, 1], backgroundImg = null, callback = null) {
+    return super.infer(imgRGBA, imgRGBA.rows, imgRGBA.cols, backgroundColor, backgroundImg, callback);
   }
-}
-class tfSeg extends CV {
-  constructor(modelURL, inferConfig, sessionOption = "webgl", getFeeds = void 0, postProcess = void 0, disOpticalFlow = true) {
-    super(modelURL, inferConfig, sessionOption, getFeeds, postProcess, true);
-    this.disOpticalFlow = disOpticalFlow;
-    if (disOpticalFlow) {
-      this.disflow = createDISOpticalFlow();
-      this.prevGray = null;
-      this.preCfd = null;
-      this.isInit = true;
-    }
-  }
-  /**
-   * get the feeds of the infer session.
-   * @param imgTensor image tensor
-   * @returns feeds of the infer session
-   */
-  getFeeds(imgTensor) {
-    return { x: imgTensor };
-  }
-  /**
-   * segmentation postprocess.
-   * @param resultsTensors result tensors
-   * @returns segmentation results
-   */
-  async postProcess(resultsTensors, ...args) {
-    let segTensor = Array.isArray(resultsTensors) ? resultsTensors[0] : resultsTensors;
-    let data = await segTensor.data();
-    let [N, H, W, C] = segTensor.shape;
-    let numPixel = H * W;
-    let backgroundColor = args[3];
-    let backgroundImg = args[4];
-    const maskData = new Float32Array(numPixel);
-    for (let i = 0; i < numPixel * 2; i++) {
-      maskData[i] = data[i * 2 + 1];
-    }
-    const mask = new cv.Mat(H, W, cv.CV_32F);
-    mask.data32F.set(maskData);
-    if (!this.disOpticalFlow) {
-      try {
-        const curGray = new cv.Mat();
-        if (this.in_clone && !this.in_clone.isDeleted()) {
-          cv.cvtColor(this.in_clone, curGray, cv.COLOR_RGBA2GRAY);
-          cv.resize(curGray, curGray, new cv.Size(W, H), 0, 0, cv.INTER_LINEAR);
-        }
-        const fusionCfd = opticFlowProcess(
-          this.prevGray,
-          // 上一帧灰度图
-          curGray,
-          mask,
-          // 当前帧分割结果
-          this.preCfd,
-          // 上一帧融合结果
-          this.isInit,
-          // 是否初始化
-          this.disflow
-          // 光流对象
-        );
-        thresholdMask(fusionCfd, 0.2, 0.8);
-        if (this.prevGray && !this.prevGray.isDeleted()) {
-          this.prevGray.delete();
-        }
-        if (this.preCfd && !this.preCfd.isDeleted()) {
-          this.preCfd.delete();
-        }
-        this.prevGray = curGray.clone();
-        this.preCfd = fusionCfd.clone();
-        fusionCfd.copyTo(mask);
-        curGray.delete();
-        fusionCfd.delete();
-        if (this.isInit) {
-          this.isInit = false;
-        }
-      } catch (error) {
-        error("光流处理错误:", error);
-      }
-    }
-    cv.resize(mask, mask, new cv.Size(this.in_width, this.in_height), 0, 0, cv.INTER_LINEAR);
-    const maskInv = new cv.Mat(this.in_height, this.in_width, cv.CV_32F, [1, 1, 1, 1]);
-    cv.subtract(maskInv, mask, maskInv);
-    cv.cvtColor(mask, mask, cv.COLOR_GRAY2RGBA);
-    cv.cvtColor(maskInv, maskInv, cv.COLOR_GRAY2RGBA);
-    const inImg = this.in_clone;
-    if (!inImg || inImg.isDeleted()) {
-      throw new Error("输入图像未初始化或已释放");
-    }
-    let bgImg;
-    if (backgroundImg && !backgroundImg.isDeleted()) {
-      bgImg = new cv.Mat();
-      cv.resize(backgroundImg, bgImg, new cv.Size(this.in_width, this.in_height), 0, 0, cv.INTER_LINEAR);
-      if (bgImg.channels() === 3) {
-        cv.cvtColor(bgImg, bgImg, cv.COLOR_BGR2RGBA);
-      } else if (bgImg.channels() === 1) {
-        cv.cvtColor(bgImg, bgImg, cv.COLOR_GRAY2RGBA);
-      }
-    } else {
-      bgImg = new cv.Mat(this.in_height, this.in_width, cv.CV_8UC4, backgroundColor);
-    }
-    inImg.convertTo(inImg, cv.CV_32F);
-    bgImg.convertTo(bgImg, cv.CV_32F);
-    cv.multiply(inImg, mask, inImg);
-    cv.multiply(bgImg, maskInv, bgImg);
-    cv.add(inImg, bgImg, inImg);
-    let inImg8u = new cv.Mat();
-    inImg.convertTo(inImg8u, cv.CV_8U);
-    mask.delete();
-    bgImg.delete();
-    inImg.delete();
-    maskInv.delete();
-    return {
-      blendedImg: inImg8u,
-      colorMap: this.colorMap,
-      delete: function() {
-        if (!this.blendedImg.isDeleted()) {
-          this.blendedImg.delete();
-        }
-      }
-    };
-  }
-  /**
-   * segmentation infer.
-   * @param imgRGBA RGBA image
-   * @returns segmentation results
-   */
-  infer(imgRGBA, backgroundColor = [255, 255, 255, 1], backgroundImg = null) {
-    this.in_height = imgRGBA.rows;
-    this.in_width = imgRGBA.cols;
-    this.in_clone = imgRGBA.clone();
-    return super.infer(imgRGBA, imgRGBA.rows, imgRGBA.cols, backgroundColor, backgroundImg);
+  postProcess(resultsTensors, modelType, ...args) {
+    return super.postProcess(resultsTensors, modelType, ...args);
   }
 }
 class RSeg extends CV {
@@ -47081,12 +46858,9 @@ class RSeg extends CV {
       [1]
     );
     this.disOpticalFlow = disOpticalFlow;
-    if (disOpticalFlow) {
-      this.disflow = createDISOpticalFlow();
-      this.prevGray = null;
-      this.preCfd = null;
-      this.isInit = true;
-    }
+    postProcessWorkerManager.sendTask("INIT_POST_PROCESS", {
+      disOpticalFlow
+    });
   }
   getFeeds(imgTensor) {
     return {
@@ -47107,114 +46881,22 @@ class RSeg extends CV {
    * @param resultsTensors result tensors
    * @returns segmentation results
    */
-  postProcess(resultsTensors, ...args) {
+  postProcess(resultsTensors, modelType, ...args) {
     this.state = {
       r1: resultsTensors.r1o,
       r2: resultsTensors.r2o,
       r3: resultsTensors.r3o,
       r4: resultsTensors.r4o
     };
-    const fgrTensor = resultsTensors.fgr;
-    const phaTensor = resultsTensors.pha;
-    const fgrDims = fgrTensor.dims;
-    const [C, height, width] = [fgrDims[1], fgrDims[2], fgrDims[3]];
-    const phaData = phaTensor.data;
-    let backgroundColor = args[3];
-    let backgroundImg = args[4];
-    const mask = cv.matFromArray(height, width, cv.CV_32F, phaData);
-    if (this.disOpticalFlow) {
-      let optHeight = height / 2;
-      let optWidth = width / 2;
-      try {
-        const curGray = new cv.Mat();
-        if (this.in_clone && !this.in_clone.isDeleted()) {
-          cv.cvtColor(this.in_clone, curGray, cv.COLOR_RGBA2GRAY);
-          cv.resize(curGray, curGray, new cv.Size(optWidth, optHeight), 0, 0, cv.INTER_LINEAR);
-          cv.resize(mask, mask, new cv.Size(optWidth, optHeight), 0, 0, cv.INTER_LINEAR);
-        }
-        const fusionCfd = opticFlowProcess(
-          this.prevGray,
-          // 上一帧灰度图
-          curGray,
-          mask,
-          // 当前帧分割结果
-          this.preCfd,
-          // 上一帧融合结果
-          this.isInit,
-          // 是否初始化
-          this.disflow
-          // 光流对象
-        );
-        thresholdMask(fusionCfd, 0.2, 0.8);
-        if (this.prevGray && !this.prevGray.isDeleted()) {
-          this.prevGray.delete();
-        }
-        if (this.preCfd && !this.preCfd.isDeleted()) {
-          this.preCfd.delete();
-        }
-        this.prevGray = curGray.clone();
-        this.preCfd = fusionCfd.clone();
-        fusionCfd.copyTo(mask);
-        curGray.delete();
-        fusionCfd.delete();
-        if (this.isInit) {
-          this.isInit = false;
-        }
-      } catch (error) {
-        error("光流处理错误:", error);
-      }
-    }
-    cv.resize(mask, mask, new cv.Size(this.in_width, this.in_height), 0, 0, cv.INTER_LINEAR);
-    const maskInv = new cv.Mat(this.in_height, this.in_width, cv.CV_32F, [1, 1, 1, 1]);
-    cv.subtract(maskInv, mask, maskInv);
-    cv.cvtColor(mask, mask, cv.COLOR_GRAY2RGBA);
-    cv.cvtColor(maskInv, maskInv, cv.COLOR_GRAY2RGBA);
-    const inImg = this.in_clone;
-    if (!inImg || inImg.isDeleted()) {
-      throw new Error("输入图像未初始化或已释放");
-    }
-    let bgImg;
-    if (backgroundImg && !backgroundImg.isDeleted()) {
-      bgImg = new cv.Mat();
-      cv.resize(backgroundImg, bgImg, new cv.Size(this.in_width, this.in_height), 0, 0, cv.INTER_LINEAR);
-      if (bgImg.channels() === 3) {
-        cv.cvtColor(bgImg, bgImg, cv.COLOR_BGR2RGBA);
-      } else if (bgImg.channels() === 1) {
-        cv.cvtColor(bgImg, bgImg, cv.COLOR_GRAY2RGBA);
-      }
-    } else {
-      bgImg = new cv.Mat(this.in_height, this.in_width, cv.CV_8UC4, backgroundColor);
-    }
-    inImg.convertTo(inImg, cv.CV_32F);
-    bgImg.convertTo(bgImg, cv.CV_32F);
-    cv.multiply(inImg, mask, inImg);
-    cv.multiply(bgImg, maskInv, bgImg);
-    cv.add(inImg, bgImg, inImg);
-    let inImg8u = new cv.Mat();
-    inImg.convertTo(inImg8u, cv.CV_8U);
-    mask.delete();
-    bgImg.delete();
-    inImg.delete();
-    maskInv.delete();
-    return {
-      blendedImg: inImg8u,
-      delete: function() {
-        if (!this.blendedImg.isDeleted()) {
-          this.blendedImg.delete();
-        }
-      }
-    };
+    return super.postProcess(resultsTensors, modelType, ...args);
   }
   /**
    * segmentation infer.
    * @param imgRGBA RGBA image
    * @returns segmentation results
    */
-  infer(imgRGBA, backgroundColor = [255, 255, 255, 1], backgroundImg = null) {
-    this.in_height = imgRGBA.rows;
-    this.in_width = imgRGBA.cols;
-    this.in_clone = imgRGBA.clone();
-    return super.infer(imgRGBA, imgRGBA.rows, imgRGBA.cols, backgroundColor, backgroundImg);
+  infer(imgRGBA, backgroundColor = [255, 255, 255, 1], backgroundImg = null, callback = null) {
+    return super.infer(imgRGBA, imgRGBA.rows, imgRGBA.cols, backgroundColor, backgroundImg, callback);
   }
 }
 const NennWeb = {
@@ -47224,20 +46906,20 @@ const NennWeb = {
    * @returns Promise<*> 模型对象
    */
   async getModel(modelName) {
-    return await modelManager.getModel(modelName);
+    return await postProcessWorkerManager.getModel(modelName);
   },
   /**
    * 获取已加载的模型
    * @returns {seg_fast: *, seg_normal: *}
    */
   getLoadedModels() {
-    return modelManager.models;
+    return postProcessWorkerManager.models;
   },
   /**
    * 销毁模型管理器
    */
   destroyModels() {
-    modelManager.destroy();
+    postProcessWorkerManager.destroy();
   },
   /**
    * get the index of the max value of the array.
@@ -47458,37 +47140,37 @@ const NennWeb = {
   CV,
   Det,
   Seg,
-  tfSeg,
   RSeg
 };
-(function(_0x424b8f, _0x249ce5) {
-  var _0x469305 = _0x4962, _0x408dd1 = _0x424b8f();
+var _0x1724db = _0x50cd;
+(function(_0x337176, _0x373a56) {
+  var _0x7ae4c = _0x50cd, _0x16f9b8 = _0x337176();
   while (!![]) {
     try {
-      var _0x45cb16 = -parseInt(_0x469305(415)) / 1 + parseInt(_0x469305(419)) / 2 * (parseInt(_0x469305(416)) / 3) + parseInt(_0x469305(421)) / 4 * (-parseInt(_0x469305(414)) / 5) + parseInt(_0x469305(420)) / 6 + -parseInt(_0x469305(413)) / 7 + parseInt(_0x469305(422)) / 8 + parseInt(_0x469305(417)) / 9 * (parseInt(_0x469305(418)) / 10);
-      if (_0x45cb16 === _0x249ce5) break;
-      else _0x408dd1["push"](_0x408dd1["shift"]());
-    } catch (_0x3c6e0e) {
-      _0x408dd1["push"](_0x408dd1["shift"]());
+      var _0x3b9b50 = -parseInt(_0x7ae4c(221)) / 1 * (-parseInt(_0x7ae4c(214)) / 2) + -parseInt(_0x7ae4c(218)) / 3 + -parseInt(_0x7ae4c(216)) / 4 + parseInt(_0x7ae4c(220)) / 5 * (-parseInt(_0x7ae4c(217)) / 6) + parseInt(_0x7ae4c(219)) / 7 + -parseInt(_0x7ae4c(224)) / 8 * (parseInt(_0x7ae4c(215)) / 9) + parseInt(_0x7ae4c(222)) / 10 * (parseInt(_0x7ae4c(223)) / 11);
+      if (_0x3b9b50 === _0x373a56) break;
+      else _0x16f9b8["push"](_0x16f9b8["shift"]());
+    } catch (_0x219236) {
+      _0x16f9b8["push"](_0x16f9b8["shift"]());
     }
   }
-})(_0x5ea9, 430824);
-function _0x4962(_0x157607, _0x2bd119) {
-  var _0x5ea970 = _0x5ea9();
-  return _0x4962 = function(_0x4962e2, _0x41a0ae) {
-    _0x4962e2 = _0x4962e2 - 413;
-    var _0xde14b6 = _0x5ea970[_0x4962e2];
-    return _0xde14b6;
-  }, _0x4962(_0x157607, _0x2bd119);
+})(_0x3808, 364275);
+window[_0x1724db(213)] = NennWeb, window["cv"] = cv, window["ort"] = index_default;
+function _0x50cd(_0x21a331, _0x3f4bee) {
+  var _0x38087e = _0x3808();
+  return _0x50cd = function(_0x50cd1a, _0x33c940) {
+    _0x50cd1a = _0x50cd1a - 213;
+    var _0xad1c21 = _0x38087e[_0x50cd1a];
+    return _0xad1c21;
+  }, _0x50cd(_0x21a331, _0x3f4bee);
 }
-function _0x5ea9() {
-  var _0x39d8b5 = ["594807IyutpM", "11678859GnwDuV", "10PyDxfL", "4RBWvKy", "595062yEedbh", "4ABGHxd", "1133976STAolv", "3425142tYyXkO", "2053885oKynJa", "604206wqNeKw"];
-  _0x5ea9 = function() {
-    return _0x39d8b5;
+function _0x3808() {
+  var _0x516b5d = ["1070480PQsUNt", "NennWeb", "76TIOXsX", "45fFxMwJ", "656080HxsRpD", "42420SsWBXM", "1036080bJTGPe", "21406wlFCvx", "325izhQfj", "13492ePaodn", "10xoghnd", "16351511pmEXnK"];
+  _0x3808 = function() {
+    return _0x516b5d;
   };
-  return _0x5ea9();
+  return _0x3808();
 }
-window["NennWeb"] = NennWeb, window["cv"] = cv, window["ort"] = index_default;
 export {
   NennWeb,
   cv,
