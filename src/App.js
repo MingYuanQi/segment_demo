@@ -17,6 +17,7 @@ const App = () => {
   const [localBackgroundPreview, setLocalBackgroundPreview] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const matCanvasRef = useRef(null); // 新添加的 Canvas ref，用于显示 mat 结果
   const model = useRef(null);
   const imgRGBA = useRef(null);
   const result = useRef(null);
@@ -258,16 +259,14 @@ const App = () => {
           canvas.height = img.height;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0); // 绘制完整图片
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height); // RGBA格式
 
-          // 3. 转换为OpenCV Mat（RGBA→BGR，符合OpenCV默认格式）
-          const cv = window.cv; // 从全局获取OpenCV实例
-          const rgbaMat = cv.matFromImageData(imageData); // 先转RGBA格式Mat
-          const bgrMat = new cv.Mat(); // 最终输出BGR格式Mat（OpenCV常用）
-          cv.cvtColor(rgbaMat, bgrMat, cv.COLOR_RGBA2BGR); // 格式转换
+          const cv = window.cv; 
+          let bgImage = cv.imread(canvas);  
+          if (matCanvasRef.current) {
+            cv.imshow(matCanvasRef.current, bgImage);
+          }
 
-          rgbaMat.delete(); // 释放临时Mat，避免内存泄漏
-          resolve(bgrMat);
+          resolve(bgImage);
         } catch (err) {
           reject(new Error(`Mat转换失败: ${err.message}`));
         }
@@ -505,11 +504,26 @@ const App = () => {
     }
   }, [isActive]);
   
-  // 组件卸载时清理（保持不变）
+  // 组件卸载时清理
   useEffect(() => {
     return () => {
+      // 停止摄像头流
       if (videoRef.current && videoRef.current.srcObject) {
         videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+      }
+      
+      // 释放 OpenCV Mat 对象资源
+      const cv = window.cv;
+      if (cv) {
+        if (imgRGBA.current && !imgRGBA.current.isDeleted()) {
+          imgRGBA.current.delete();
+        }
+        if (result.current && !result.current.isDeleted()) {
+          result.current.delete();
+        }
+        if (bgimg.current && !bgimg.current.isDeleted()) {
+          bgimg.current.delete();
+        }
       }
     };
   }, []);
@@ -660,6 +674,8 @@ const App = () => {
             className={`${isActive ? 'hidden-video' : ''}`}  
           />
           {isActive ? <canvas ref={canvasRef} className="result-canvas" />: undefined}
+          {/* 用于显示 mat 结果的 Canvas */}
+          <canvas ref={matCanvasRef} className="mat-canvas" />
         </VideoContainer>
         
         {isActive && (
@@ -933,6 +949,18 @@ const VideoContainer = styled.div`
     height: 100%;
     object-fit: contain;
     display: block;
+  }
+  .mat-canvas {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 240px;
+    height: 160px;
+    object-fit: contain;
+    display: block;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    z-index: 10;
   }
   video {
     width: 100%;
