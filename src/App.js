@@ -70,30 +70,30 @@ const App = () => {
     const loadModel = async () => {
       model.current = null
       if (selectedModel === "model1") {
-        try {
-          // 使用绝对路径
-          const configUrl = `${window.location.origin}/models/configs.json`;
+        // try {
+        //   // 使用绝对路径
+        //   const configUrl = `${window.location.origin}/models/configs.json`;
           
-          const modelurl = await window.NennWeb.getModel("seg_normal");
-          if(modelurl == null) {
-            console.error('模型URL获取失败');
-            return;
-          }
-          // 先尝试WebGPU，如果失败则fallback到WASM
-          try {
-            model.current = new window.NennWeb.RSeg(modelurl, configUrl);
-            console.log('模型1加载完成（WebGPU）');
-          } catch (webgpuError) {
-            console.warn('WebGPU加载失败，尝试使用WASM:', webgpuError);
-            // 使用WASM作为fallback
-            const sessionOption = { executionProviders: ["wasm"] };
-            model.current = new window.NennWeb.RSeg(modelurl, configUrl, sessionOption);
-            console.log('模型1加载完成（WASM fallback）');
-          }
-        } catch (error) {
-          console.error('模型加载错误:', error);
-          alert(`模型加载失败: ${error.message}`);
-        }
+        //   const modelurl = await window.NennWeb.getModel("seg_normal");
+        //   if(modelurl == null) {
+        //     console.error('模型URL获取失败');
+        //     return;
+        //   }
+        //   // 先尝试WebGPU，如果失败则fallback到WASM
+        //   try {
+        //     model.current = new window.NennWeb.RSeg(modelurl, configUrl);
+        //     console.log('模型1加载完成（WebGPU）');
+        //   } catch (webgpuError) {
+        //     console.warn('WebGPU加载失败，尝试使用WASM:', webgpuError);
+        //     // 使用WASM作为fallback
+        //     const sessionOption = { executionProviders: ["wasm"] };
+        //     model.current = new window.NennWeb.RSeg(modelurl, configUrl, sessionOption);
+        //     console.log('模型1加载完成（WASM fallback）');
+        //   }
+        // } catch (error) {
+        //   console.error('模型加载错误:', error);
+        //   alert(`模型加载失败: ${error.message}`);
+        // }
       }else if(selectedModel === "model2") {
         try {    
           // 使用绝对路径
