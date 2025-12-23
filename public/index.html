@@ -25,7 +25,13 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-    <script type="module" src="./nennweb.min.mjs"></script>
+    <script>
+    window.NennWebConfig = {
+      workerPath: './assets/virtualBackground/worker-postprocess-worker.mjs',
+      wasmPath: './assets/virtualBackground/'
+    };
+    </script>
+    <script type="module" src="./assets/virtualBackground/nennweb.min.mjs"></script>
  
   </head>
   <body>
